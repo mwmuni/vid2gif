@@ -1,9 +1,9 @@
 import sys
 from sys import argv
 from os import path
-from Tkinter import *
-import tkFileDialog
-from PyQt4 import QtCore, QtGui, uic
+import tkinter
+from tkinter import Tk, filedialog
+from PyQt5 import QtCore, QtGui, uic, QtWidgets
 from moviepy.editor import *
 #import image
 
@@ -12,19 +12,19 @@ qtCreatorFile = 'vid2gif.ui'
 
 def main():
     global app
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     window = vid2gif()
     window.show()
     app.exec_()
 
-class vid2gif(QtGui.QMainWindow, Ui_MainWindow, QtGui.QWidget):
+class vid2gif(QtWidgets.QMainWindow, Ui_MainWindow, QtWidgets.QWidget):
     global app
     def __init__(self):
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
 
-        app.setStyle(QtGui.QStyleFactory.create("cleanlooks"))      
+        app.setStyle(QtWidgets.QStyleFactory.create("cleanlooks"))      
 
         self.btn_gen_gif.clicked.connect(self.gen_file)
         self.btn_browse_file.clicked.connect(self.browse_file)
@@ -42,7 +42,7 @@ class vid2gif(QtGui.QMainWindow, Ui_MainWindow, QtGui.QWidget):
 
     def browse_file(self):
         root = Tk()
-        fileName = tkFileDialog.askopenfilename(
+        fileName = filedialog.askopenfilename(
                 filetypes=(('AVI Files', '.avi'),
                            ('MP4 Files', '.mp4'),
                            ('All Files', '.*')))
@@ -50,7 +50,7 @@ class vid2gif(QtGui.QMainWindow, Ui_MainWindow, QtGui.QWidget):
         root.destroy()
 
 global app
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 window = vid2gif()
 window.show()
 sys.exit(app.exec_())
