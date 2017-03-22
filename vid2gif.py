@@ -46,8 +46,9 @@ class vid2gif(QtGui.QMainWindow, Ui_MainWindow, QtGui.QWidget):
                 filetypes=(('AVI Files', '.avi'),
                            ('MP4 Files', '.mp4'),
                            ('All Files', '.*')))
-        self.line_filein.setText(path.basename(fileName))
         root.destroy()
+        self.line_filein.setText(path.basename(fileName))
+#        root.destroy()
 
 global app
 app = QtGui.QApplication(sys.argv)
